@@ -213,7 +213,7 @@ gemini-cli 的实现和 ClaudeCode 一样，都是使用大模型来直接生成
 在推理完成后，生成最终的 <state_snapshot> XML 对象。信息要极其密集。省略任何无关的对话填充内容。
 
 结构必须如下：
-
+```xml
 <state_snapshot>
   <overall_goal>
     <!-- 用一句简洁的话描述用户的高层目标 -->
@@ -237,7 +237,7 @@ gemini-cli 的实现和 ClaudeCode 一样，都是使用大模型来直接生成
 
 </state_snapshot>
 ```
-
+```
 将历史记录输入到这个提示词的 LLM 中，会有压缩后的 state_snapshot 中的关键信息输出，我们一起来看看这 5 点关键信息的含义
 
 1. **Overall Goal（总体目标）**：描述用户的高层目标，让下一轮的 AI 快速理解用户想达成什么

@@ -92,7 +92,7 @@ Claude 团队在他们自己的研究分享文章中提到：在 ClaudeCode 中�
   [你的思考过程，确保全面准确地涵盖所有要点]
 </analysis>
 
-<summary>
+<summary1>
   1. 主要请求和意图：
   [详细描述]
 
@@ -134,8 +134,8 @@ Claude 团队在他们自己的研究分享文章中提到：在 ClaudeCode 中�
   9. 可选的下一步：
   [可选的下一步操作]
 
-</summary>
-```
+</summary1>
+
 ## 附加说明
 
 请根据迄今为止的对话提供摘要，遵循此结构并确保回复的精确性和全面性。
@@ -203,7 +203,7 @@ gemini-cli 的实现和 ClaudeCode 一样，都是使用大模型来直接生成
 
 我们一起来看看 gemini-cli 中的完整的压缩提示词是什么样子的
 
-```text
+```markdown
 你是将内部对话历史总结为特定结构的组件。
 
 当对话历史变得过大时，你将被调用，将整个历史提炼成一个简洁、结构化的 XML 快照。这个快照至关重要，因为它将成为代理对过去的*唯一*记忆。代理将仅基于此快照恢复其工作。所有关键细节、计划、错误和用户指令都必须被保留。
@@ -236,7 +236,7 @@ gemini-cli 的实现和 ClaudeCode 一样，都是使用大模型来直接生成
     </current_plan>
 
 </state_snapshot>
-```
+
 ```
 将历史记录输入到这个提示词的 LLM 中，会有压缩后的 state_snapshot 中的关键信息输出，我们一起来看看这 5 点关键信息的含义
 
@@ -251,8 +251,7 @@ gemini-cli 的实现和 ClaudeCode 一样，都是使用大模型来直接生成
 
 这一节我们使用的是**上下文压缩策略- 清理工具的输入和输出**以达到上下文压缩的目的，这个设计理念在 Claude 团队中得到验证
 
-> **<font style="color:rgb(20, 20, 19);background-color:rgb(250, 249, 245);">Context editing</font>**<font style="color:rgb(20, 20, 19);background-color:rgb(250, 249, 245);"> automatically clears stale tool calls and results from within the context window when approaching token limits. As your agent executes tasks and accumulates tool results, context editing removes stale content while preserving the conversation flow, effectively extending how long agents can run without manual intervention. This also increases the effective model performance as Claude focuses only on relevant context.  
-</font><font style="color:rgb(20, 20, 19);background-color:rgb(250, 249, 245);">上下文编辑在接近 token 限制时，会自动清除上下文窗口中的过时工具调用和结果。当你的代理执行任务并积累工具结果时，上下文编辑会移除过时内容，同时保留对话流程，有效延长代理无需人工干预即可运行的时间。这也有助于提升有效模型性能，因为 Claude 只会关注相关上下文。</font>
+> **Context editing** automatically clears stale tool calls and results from within the context window when approaching token limits. As your agent executes tasks and accumulates tool results, context editing removes stale content while preserving the conversation flow, effectively extending how long agents can run without manual intervention. This also increases the effective model performance as Claude focuses only on relevant context.  上下文编辑在接近 token 限制时，会自动清除上下文窗口中的过时工具调用和结果。当你的代理执行任务并积累工具结果时，上下文编辑会移除过时内容，同时保留对话流程，有效延长代理无需人工干预即可运行的时间。这也有助于提升有效模型性能，因为 Claude 只会关注相关上下文
 >
 
 ![上下文压缩-工具消息裁剪](./image/image%20(49).png)
